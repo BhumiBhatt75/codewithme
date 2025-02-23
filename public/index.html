@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode Progress Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @keyframes fillAnimation {
+            from { stroke-dashoffset: var(--initialOffset); }
+            to { stroke-dashoffset: var(--targetOffset); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="mainNav" style="display: none;">
+        <div class="nav-content">
+            <div class="nav-left">
+                <img src="https://leetcode.com/static/images/LeetCode_logo.png" alt="Logo" class="nav-logo">
+                <span class="nav-brand">CodeWithMe</span>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="nav-link">Portfolio</a>
+                <a href="#" class="nav-link">Resume</a>
+                <button onclick="logout()" class="nav-link logout-btn">Log Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="landing-container" id="landingPage">
+        <div class="login-box">
+            <img src="https://leetcode.com/static/images/LeetCode_logo.png" alt="LeetCode Logo" class="leetcode-logo">
+            <h1>LeetCode Progress Tracker</h1>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="showTab('login')">Login</button>
+                <button class="tab-btn" onclick="showTab('register')">Register</button>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <input type="text" id="loginLeetcodeUsername" placeholder="LeetCode Username" required>
+                <button type="submit">Login</button>
+            </form>
+
+            <form id="registerForm" class="auth-form" style="display: none;">
+                <input type="text" id="registerUsername" placeholder="Choose Username" required>
+                <input type="password" id="registerPassword" placeholder="Choose Password" required>
+                <input type="text" id="registerLeetcodeUsername" placeholder="LeetCode Username" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="main-container" id="mainContent" style="display: none;">
+        <header>
+            <div class="header-content">
+                <img src="https://leetcode.com/static/images/LeetCode_logo.png" alt="LeetCode Logo" class="small-logo">
+                <h1>My LeetCode Progress</h1>
+                <span id="usernameDisplay" class="username-display"></span>
+            </div>
+        </header>
+
+        <div class="leetcode-profile">
+            <div class="leetcode-stats" id="leetcodeStats">
+                <!-- LeetCode stats will be displayed here -->
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <!-- Add Problem Button -->
+            <button id="addProblemBtn" class="add-problem-btn">
+                <span class="btn-icon">+</span>
+                <span class="btn-text">Add New Problem</span>
+            </button>
+
+            <!-- Problems List Panel -->
+            <div class="problems-list" id="problemsList">
+                <h2>Solved Problems</h2>
+                <div id="problemsContainer"></div>
+            </div>
+
+            <button class="toggle-problems" id="toggleProblems">
+                <span class="icon">≡</span>
+            </button>
+
+            <!-- Add Problem Modal -->
+            <div id="addProblemModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Add New Problem</h2>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <form id="problemForm" class="problem-form">
+                        <div class="form-group">
+                            <label for="problemName">Problem Name</label>
+                            <input type="text" id="problemName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="problemLink">Problem Link</label>
+                            <input type="text" id="problemLink" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="difficulty">Difficulty</label>
+                                <select id="difficulty" required>
+                                    <option value="" disabled selected>Select Difficulty</option>
+                                    <option value="easy">Easy</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="hard">Hard</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dateCompleted">Completion Date</label>
+                                <input type="date" id="dateCompleted" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="approach">Your Approach</label>
+                            <textarea id="approach" placeholder="Explain your thought process..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="solution">Solution</label>
+                            <textarea id="solution" class="code-input" placeholder="Paste your code here..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Additional Notes</label>
+                            <textarea id="notes" placeholder="Time complexity, space complexity, edge cases..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Add Solution</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
